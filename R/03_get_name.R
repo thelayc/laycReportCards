@@ -2,6 +2,7 @@
 #'
 #' This function takes a student's report card as input (vector), and extract the students first and last name.
 #' @param student_rcard A vector containing a student's report card information
+#' @param format_type character: The report card format. DC report cards come in different formats, this argument specifies the format of the report card.
 #' @keywords student_rcard
 #' @export
 #' @examples
