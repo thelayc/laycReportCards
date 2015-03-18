@@ -1,6 +1,6 @@
 list.files('../temp_data', full.names = TRUE, recursive = TRUE)
 txt <- read_pdf('../temp_data/report_cards/Powell ES Term2 report cards SY14-15.pdf')
-rcards <- split_students(txt)
+rcards <- split_students(txt, format_type = 'format2')
 rcards[[1]]
 l <- rcards[[1]][10]
 nchar(l)
