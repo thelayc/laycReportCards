@@ -9,7 +9,7 @@
 #' parsed_pdf <-read_pdf('my_pdf_file.pdf')
 #' split_students(parsed_pdf)
 
-split_students <- function(parsed_pdf, format_type = 'format2'){
+split_students <- function(parsed_pdf, format_type){
   
   ## remove empty elements
   parsed_pdf <- parsed_pdf[parsed_pdf != ""]
