@@ -1,6 +1,7 @@
 #' get_grade()
 #'
-#' This function takes a student's report card as input (vector), and extract the student's grade
+#' This function takes a student's report card as input (vector), and extract the student's grade level.
+#' 
 #' @param student_rcard A vector containing a student's report card information
 #' @keywords student_rcard
 #' @export
@@ -11,22 +12,22 @@
 
 get_grade <- function(student_rcard){
   
-  ## Grab student's gpas
-  # detect cumulative gpa element
+  #1) Identify line(s) with student's grade level
+  # detect grade level element
   grade_line <- stringr::str_detect(student_rcard, "Grade:")
-  # Extract element containing cumulative gpa
+  # Extract line containing grade level
   student_rcard <- student_rcard[grade_line]
   # Remove potential duplicates
   student_rcard <- student_rcard[1] 
   # Remove blank spaces
   student_rcard <- stringr::str_replace_all(student_rcard, " ", "")
   
-  ## Extract cumulative gpa
-  # matches number with format 0.00 after "Cumulative="
+  #2) Extract grade level
+  # Detect grade level information in the line
   grade <- stringr::str_extract(student_rcard, stringr::perl("Grade:[0-9]+")) 
-  # Remove "Cumulative="
+  # Remove extra information
   grade <- stringr::str_replace(grade, "Grade:", "") 
   
-  ## Return student's cumulative gpa
+  ## Return student's grade level
   return(list(c(grade = grade)))
 }
