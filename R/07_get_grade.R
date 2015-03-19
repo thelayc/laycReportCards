@@ -23,7 +23,7 @@ get_grade <- function(student_rcard){
   
   ## Extract cumulative gpa
   # matches number with format 0.00 after "Cumulative="
-  grade <- stringr::str_extract(student_rcard, perl("Grade:[0-9]+")) 
+  grade <- stringr::str_extract(student_rcard, stringr::perl("Grade:[0-9]+")) 
   # Remove "Cumulative="
   grade <- stringr::str_replace(grade, "Grade:", "") 
   
