@@ -1,13 +1,20 @@
 list.files('../temp_data', full.names = TRUE, recursive = TRUE)
+format_type <- 'format2'
 txt <- read_pdf('../temp_data/report_cards/Powell ES Term2 report cards SY14-15.pdf')
 rcards <- split_students(txt, format_type = 'format2')
-rcards[[1]]
+student_rcard <- rcards[[1]]
+get_name(student_rcard, format_type = 'format2')
+names <- lapply(rcards, get_name, format_type = 'format2')
+
 l <- rcards[[1]][10]
 nchar(l)
 for (i in 1:nchar(l)) {
   print(paste(i, substr(l, 1, i)))
 }
 
+
+
+names <- lapply(rcards, get_name)
 #########################################
 parsed_pdf <-read_pdf('./data/wilson_20140124.pdf')
 students_list <- split_students(parsed_pdf)

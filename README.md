@@ -7,4 +7,5 @@
   - And then how to add that dataframe to the main dataframe returned by get_rcards()
 
 ### TO DO on format2 branch
+* read_pdf(): Include test that checks OS type: Windows, Mac, Linux
 * split_student(): Add documentation about the different types of report cards
