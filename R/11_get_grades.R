@@ -12,7 +12,7 @@
 
 get_grades <- function(student_rcard){
   
-  ## Identify lines containing grades information
+  #1) Identify grades alignment on the page
   # Detect line that starts with "Course"
   course_line <- stringr::str_detect(student_rcard, '^Course')
   # Extract lines starting with "Course"
@@ -21,14 +21,15 @@ get_grades <- function(student_rcard){
   course <- course[1]
   # Locate the starting position of "Sec" in the string
   sec_position <- stringr::str_locate(course, 'Sec')[1]
-  # Detect lines with grades
+  
+  #2) Detect lines with grades information
   grade_lines <- stringr::str_detect(substr(student_rcard, sec_position, sec_position + 2), '^[0-9]{2}')
   # Extract grade lines
   grade_lines <- student_rcard[grade_lines]
   
-  ## Identify position of each grade on the line
+  #3) Identify position of each grade on the line
    # Use "Term 1", "Term 2", ..., "Exam", and "Final" as position markers
-  # detect student's name element
+  # detect where grades information begins
   term_line <- stringr::str_detect(student_rcard, "Term 1")
   # Extract element containing Term 1"
   term <- student_rcard[term_line]
@@ -47,7 +48,7 @@ get_grades <- function(student_rcard){
   # Locate the starting position of "Term 4" in the string
   final_position <- stringr::str_locate(term, 'Final')[1]
   
-  ## Grab grades based on the position information
+  #4) Grab grades based on the position information
   # grab course names
   courses <- stringr::str_trim(substr(grade_lines, sec_position + 5, g1_position - 1))
   # grab grades from term 1
@@ -70,11 +71,11 @@ get_grades <- function(student_rcard){
   # Replace blank by NAs: TO BE DONE
   
   # Melt data frame
-  grades <- reshape::melt(grades, id = c('courses'))
+  grades <- reshape2::melt(grades, id = c('courses'))
   # Remove rows with empty value
   grades$value <- stringr::str_replace_all(grades$value, " ", "")
   # Make wide
-  grades <- reshape::cast(grades, ~ courses + variable)
+  grades <- reshape2::dcast(grades, ~ courses + variable)
   
   return(grades)
 }
