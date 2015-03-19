@@ -75,7 +75,7 @@ get_grades <- function(student_rcard){
   # Remove rows with empty value
   grades$value <- stringr::str_replace_all(grades$value, " ", "")
   # Make wide
-  grades <- reshape2::dcast(grades, ~ courses + variable)
+  grades <- reshape::cast(grades, ~ courses + variable)
   
   return(grades)
 }
