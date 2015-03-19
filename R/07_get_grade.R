@@ -10,24 +10,22 @@
 #' get_grade(students_list[[1]])
 
 get_grade <- function(student_rcard){
-  ## Load libraries
-  library(stringr)
   
   ## Grab student's gpas
   # detect cumulative gpa element
-  grade_line <- str_detect(student_rcard, "Grade:")
+  grade_line <- stringr::str_detect(student_rcard, "Grade:")
   # Extract element containing cumulative gpa
   student_rcard <- student_rcard[grade_line]
   # Remove potential duplicates
   student_rcard <- student_rcard[1] 
   # Remove blank spaces
-  student_rcard <- str_replace_all(student_rcard, " ", "")
+  student_rcard <- stringr::str_replace_all(student_rcard, " ", "")
   
   ## Extract cumulative gpa
   # matches number with format 0.00 after "Cumulative="
-  grade <- str_extract(student_rcard, perl("Grade:[0-9]+")) 
+  grade <- stringr::str_extract(student_rcard, perl("Grade:[0-9]+")) 
   # Remove "Cumulative="
-  grade <- str_replace(grade, "Grade:", "") 
+  grade <- stringr::str_replace(grade, "Grade:", "") 
   
   ## Return student's cumulative gpa
   return(list(c(grade = grade)))
