@@ -28,13 +28,13 @@ get_name <- function(student_rcard, format_type){
     
     # Extract first name
     # matches everything after the comma & space, and before the first space
-    first_name <- stringr::str_extract(student_rcard, perl("(, )[A-Z][a-z]+()"))
+    first_name <- stringr::str_extract(student_rcard, stringr::perl("(, )[A-Z][a-z]+()"))
     # matches only letters in the string
-    first_name <- stringr::str_extract(first_name, perl("[A-Z][a-z]+"))
+    first_name <- stringr::str_extract(first_name, stringr::perl("[A-Z][a-z]+"))
     
     # Extract last name
     # matches everything before the first comma and the first space before the comma.
-    last_name <- stringr::str_extract(student_rcard, perl("\\S+(?=\\,)"))
+    last_name <- stringr::str_extract(student_rcard, stringr::perl("\\S+(?=\\,)"))
     
   } else {
     # Extract element containing student's name
