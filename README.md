@@ -9,3 +9,4 @@
 ### TO DO on format2 branch
 * read_pdf(): Include test that checks OS type: Windows, Mac, Linux
 * split_student(): Add documentation about the different types of report cards
+* 11_get_grades: review issue with reshape and reshape2
