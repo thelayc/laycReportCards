@@ -2,6 +2,9 @@ library(dplyr)
 library(plyr)
 library(tidyr)
 library(stringr)
+library(ggplot2)
+library(ggthemes)
+library(extrafont)
 # Testing code for FORMAT1 ------------------------------------------------
 
 list.files('../temp_data', full.names = TRUE, recursive = TRUE)
@@ -46,16 +49,22 @@ powell[] <- lapply(powell, as.character)
 my_col <- colnames(powell)
 my_col <- str_replace_all(my_col, ' ', '.')
 colnames(powell) <- my_col
+
 powell %>%
   gather(topic, value, ART_term1:WORLD.LANGUAGE_term4) %>%
   separate(topic, into = c('topic', 'term'), sep= '_') ->
   powell2
 
+# Deal with duplicate "topic" values
+powell2$topic[powell2$topic == "SPEAKING.&.LISTENING"] <- "SPEAKING.AND.LISTENING"
+powell2$topic[powell2$topic == "WORLD.LANGUAGES.[LATIN]"] <- "WORLD.LANGUAGES"
+powell2$topic[powell2$topic == "WORLD.LANGUAGE"] <- "WORLD.LANGUAGES"
+powell2$topic[powell2$topic %in% c("HEALTH.&.PHYSICAL", "HEALTH.&.PHYSICAL.EDUCATION")] <- "HEALTH.AND.PHYSICAL.EDUCATION"
+# format topic and value
 powell2 <- powell2[powell2$value != '', ]
 powell2 <- powell2[!is.na(powell2$value), ]
 powell2$topic <- tolower(powell2$topic)
 powell2$value <- as.numeric(powell2$value)
-
 
 
 powell2 %>%
@@ -82,20 +91,39 @@ eto$custom_id <- paste0(eto$fname, eto$lname)
 eto %>%
   separate(custom_id, into = c('custom_id', 'trash'), by = '-', extra = 'drop') %>%
   select(-trash) %>%
-  left_join(powell2, by = 'custom_id') ->
+  left_join(powell2, by = 'custom_id') %>%
+  select(-(custom_id:lname.y)) %>%
+  dplyr::rename(fname = fname.x, lname = lname.x) ->
   powell3
 
 length(unique(powell3$id))
 
 write.csv(powell3, file = '../temp_data/powell.csv', row.names = FALSE, na = '')
 
+# Create plot
+my_palette <- c('#e9a3c9', '#bababa', '#a1d76a')
+my_title <- ('Powell: Number of students showing positive / negative change in grades\n comparison between Term 1 and Term 2\n breakdown by subject area\n')
 
+p <- ggplot(data = powell3[!is.na(powell3$change_ord), ], aes(x = factor(change_ord)))
+p <- p + geom_bar(aes(fill = factor(change_ord)))
+p <- p + geom_text(aes(label = ..count.., y = ..count.. + 1), stat = 'bin', size = 3)
+p <- p + scale_fill_manual(values = my_palette)
+p <- p + facet_wrap(~topic, ncol = 2) + coord_flip()
+p <- p + ggtitle(my_title)
+p <- p + laycUtils::theme_layc()
+p <- p + theme(
+  axis.title = element_blank(),
+  axis.ticks.x = element_blank(),
+  axis.text.x = element_blank(),
+  panel.border = element_blank(),
+  strip.text = element_text(size = 12),
+  #strip.background = element_rect(colour = 'black'),
+  legend.position = 'none'
+)
 
+p
 
-
-
-
-
+ggsave(filename = '../temp_data/powell.png', plot = p, width = 30, height = 15, units = 'cm')
 
 
 
