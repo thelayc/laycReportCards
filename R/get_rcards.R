@@ -2,12 +2,13 @@
 #'
 #' This function takes a pdf of studetns report card as input (vpdf), and returns the information in table format
 #' @param file The name of the file which the data are to be read from (including the .pdf extension). read_pdf that the file to be read from is in the working directory
+#' @param format_type character: Identify the report card format that is used as input
 #' @keywords file
 #' @export
 #' @examples
 #' get_rcards('my_pdf_file.pdf')
 
-get_rcards <- function(file){
+get_rcards <- function(file, format_type = 'format1'){
   
   ## read pdf
   txt <- read_pdf(file)
