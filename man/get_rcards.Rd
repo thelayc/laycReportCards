@@ -4,10 +4,12 @@
 \alias{get_rcards}
 \title{get_rcards()}
 \usage{
-get_rcards(file)
+get_rcards(file, format_type = "format1")
 }
 \arguments{
 \item{file}{The name of the file which the data are to be read from (including the .pdf extension). read_pdf that the file to be read from is in the working directory}
+
+\item{format_type}{character: Identify the report card format that is used as input}
 }
 \description{
 This function takes a pdf of studetns report card as input (vpdf), and returns the information in table format
