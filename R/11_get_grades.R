@@ -69,7 +69,8 @@ get_grades <- function(student_rcard){
   # Create a dataframe
   grades <- data.frame(courses = courses, term1 = term1, term2 = term2, term3 = term3, term4 = term4, exam = exam, final = final)
   # Remove extra rows
-  grades <- grades[grades$courses != 'Authorized PM Off Campus', ]
+  keep <- !grepl(pattern = '^Authorized', x = grades$courses)
+  grades <- grades[keep, ]
   # Replace blank by NAs: TO BE DONE
   
   # Melt data frame
