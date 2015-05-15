@@ -9,22 +9,23 @@
 #' split_students(parsed_pdf)
 
 split_students <- function(parsed_pdf){
-  ## Load libraries
-  library(stringr)
-  library(plyr)
   
-  ## remove empty elements
+  # Check input validity
+  assertthat::assert_that(is.character(parsed_pdf))
+  
+  # 1 - remove empty elements
   parsed_pdf <- parsed_pdf[parsed_pdf != ""]
   
-  ## Identify individual student's record
+  # 2 - Identify individual student's record
+  # TO DO: ADD CHECK TO MAKE SURE THE DELIMITER EXISTS
   # Each student's report card ends with "Community Service Hours:" 
   txt_split <- grepl("Community Service Hours:", parsed_pdf, ignore.case = TRUE)
   # Identify indexes that separate each student
   txt_split <- which(txt_split == TRUE) 
   
-  ## Create an empty list
+  # 3 - Create a list of individual students' records
+  # Create an empty list
   students_list <- list()
-  
   # Split parsed_pdf according to txt_split indexes
   for (i in 1:length(txt_split)) {
     # Identify beginning of student's report card
