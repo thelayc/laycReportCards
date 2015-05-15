@@ -5,9 +5,10 @@ Version: 0.1
 Authors@R: "Tony Fujs <tonyfujs@gmail.com> [aut, cre]"
 Maintainer: Tony Fujs <tonyfujs@gmail.com>
 Description: This package scrape DC report cards and returns students academic information in table format (R data.frame). The package main function is get_rcards(). This function takes a report card in pdf file format as input, and returns a table containing the pdf information. The function requires the pdf file to be in a specific format: Please see the "report_card.pdf" file in the package "data" folder.
-Depends:
+Depends: 
     R (>= 3.1.0)
 VignetteBuilder: knitr
 Suggests: knitr
 License: What license is it under?
 LazyData: true
+Imports: plyr
