@@ -1,14 +1,19 @@
 #' split_students()
 #'
 #' This function takes the output of the read_pdf() function as input, create separate report card record for each students, and returns a list of these report cards.
-#' @param parsed_pdf The output of the read_pdf() function
+#' @param parsed_pdf character vector: The output of the read_pdf() function
+#' @param format_type character: The report card format. DC report cards come in different formats, this argument specifies the format of the report card.
 #' @keywords parsed_pdf
 #' @export
 #' @examples
 #' parsed_pdf <-read_pdf('my_pdf_file.pdf')
 #' split_students(parsed_pdf)
 
+<<<<<<< HEAD
 split_students <- function(parsed_pdf){
+=======
+split_students <- function(parsed_pdf, format_type){
+>>>>>>> format2
   
   # Check input validity
   assertthat::assert_that(is.character(parsed_pdf))
@@ -16,10 +21,15 @@ split_students <- function(parsed_pdf){
   # 1 - remove empty elements
   parsed_pdf <- parsed_pdf[parsed_pdf != ""]
   
+<<<<<<< HEAD
   # 2 - Identify individual student's record
   # TO DO: ADD CHECK TO MAKE SURE THE DELIMITER EXISTS
+=======
+  ## Identify individual student's record
+  card_separator <- list(format1 = "Community Service Hours:", format2 = "SIGN AND RETURN")
+>>>>>>> format2
   # Each student's report card ends with "Community Service Hours:" 
-  txt_split <- grepl("Community Service Hours:", parsed_pdf, ignore.case = TRUE)
+  txt_split <- grepl(card_separator[[format_type]], parsed_pdf, ignore.case = TRUE)
   # Identify indexes that separate each student
   txt_split <- which(txt_split == TRUE) 
   

@@ -9,10 +9,20 @@
 #' read_pdf('my_pdf_file.pdf')
 
 read_pdf <- function(file, xpdf_options = '-table -eol dos'){
+<<<<<<< HEAD
   # Check that this is a Windows OS
   assertthat::assert_that(Sys.info()['sysname'] == 'Windows')
   
   # 1 - set path to pdftotxt.exe
+=======
+  ## build path to pdf file
+  path <- paste0(getwd(), '/', file)
+  
+  ## Check that to pdftotxt.exe has been installed
+#   exe_version <- 'xpdfbin-win-3.04'
+#   if (file.exists(paste0(C:/Program Files (x86)/xpdfbin-win-3.04/bin64/pdftotext.exe)))
+  ## set path to pdftotxt.exe
+>>>>>>> format2
   # Deal with path difference on 32 vs 64 bits version of Windows
   if (file.exists("C:/Program Files (x86)")) {
     exe <- "C:/Program Files (x86)/xpdfbin-win-3.04/bin64/pdftotext.exe"
