@@ -10,7 +10,7 @@ get_grade(student_rcard)
 \item{student_rcard}{A vector containing a student's report card information}
 }
 \description{
-This function takes a student's report card as input (vector), and extract the student's grade
+This function takes a student's report card as input (vector), and extract the student's grade level.
 }
 \examples{
 parsed_pdf <-read_pdf('my_pdf_file.pdf')

@@ -12,5 +12,15 @@ Suggests: knitr,
     testthat
 License: What license is it under?
 LazyData: true
+<<<<<<< HEAD
 Imports: stringr,
     plyr
+=======
+<<<<<<< HEAD
+Imports: plyr
+=======
+Imports: stringr,
+    reshape,
+    reshape2
+>>>>>>> format2
+>>>>>>> 5c3b431acf1085ef8d58f9fe9629ad12db709652

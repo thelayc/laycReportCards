@@ -4,10 +4,12 @@
 \alias{get_name}
 \title{get_name()}
 \usage{
-get_name(student_rcard)
+get_name(student_rcard, format_type)
 }
 \arguments{
 \item{student_rcard}{A vector containing a student's report card information}
+
+\item{format_type}{character: The report card format. DC report cards come in different formats, this argument specifies the format of the report card.}
 }
 \description{
 This function takes a student's report card as input (vector), and extract the students first and last name.

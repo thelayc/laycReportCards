@@ -4,10 +4,12 @@
 \alias{split_students}
 \title{split_students()}
 \usage{
-split_students(parsed_pdf)
+split_students(parsed_pdf, format_type)
 }
 \arguments{
-\item{parsed_pdf}{The output of the read_pdf() function}
+\item{parsed_pdf}{character vector: The output of the read_pdf() function}
+
+\item{format_type}{character: The report card format. DC report cards come in different formats, this argument specifies the format of the report card.}
 }
 \description{
 This function takes the output of the read_pdf() function as input, create separate report card record for each students, and returns a list of these report cards.
