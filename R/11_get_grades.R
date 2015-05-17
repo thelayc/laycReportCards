@@ -69,12 +69,12 @@ get_grades <- function(student_rcard){
   # Remove extra rows
   keep <- !grepl(pattern = '^Authorized', x = grades$courses)
   grades <- grades[keep, ]
-<<<<<<< HEAD
-  # Remove potential duplicated rows
-  dup <- duplicated(grades$courses)
-  grades <- grades[!dup, ]
-=======
->>>>>>> format2
+# <<<<<<< HEAD
+#   # Remove potential duplicated rows
+#   dup <- duplicated(grades$courses)
+#   grades <- grades[!dup, ]
+# =======
+# >>>>>>> format2
   # Replace blank by NAs: TO BE DONE
   
   # Melt data frame
