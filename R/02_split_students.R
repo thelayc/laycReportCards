@@ -9,28 +9,17 @@
 #' parsed_pdf <-read_pdf('my_pdf_file.pdf')
 #' split_students(parsed_pdf)
 
-<<<<<<< HEAD
-split_students <- function(parsed_pdf){
-<<<<<<< HEAD
-=======
-=======
 split_students <- function(parsed_pdf, format_type){
->>>>>>> format2
->>>>>>> 5c3b431acf1085ef8d58f9fe9629ad12db709652
-  
-  # Check input validity
+
+  # CHECK input validity
   assertthat::assert_that(is.character(parsed_pdf))
   
   # 1 - remove empty elements
   parsed_pdf <- parsed_pdf[parsed_pdf != ""]
   
-<<<<<<< HEAD
   # 2 - Identify individual student's record
   # TO DO: ADD CHECK TO MAKE SURE THE DELIMITER EXISTS
-=======
-  ## Identify individual student's record
-  card_separator <- list(format1 = "Community Service Hours:", format2 = "SIGN AND RETURN")
->>>>>>> format2
+  card_separator <- list(students_progress = "Community Service Hours:", report_card = "SIGN AND RETURN")
   # Each student's report card ends with "Community Service Hours:" 
   txt_split <- grepl(card_separator[[format_type]], parsed_pdf, ignore.case = TRUE)
   # Identify indexes that separate each student
