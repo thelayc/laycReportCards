@@ -9,9 +9,6 @@
 #' split_students(parsed_pdf)
 
 split_students <- function(parsed_pdf){
-  ## Load libraries
-  library(stringr)
-  library(plyr)
   
   ## remove empty elements
   parsed_pdf <- parsed_pdf[parsed_pdf != ""]
