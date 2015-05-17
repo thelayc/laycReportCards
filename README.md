@@ -5,6 +5,7 @@
   - Problem is: different students have different columns
   - Need to figure out how to merge individual dataframe into one big dataframe
   - And then how to add that dataframe to the main dataframe returned by get_rcards()
+* read_pdf: check the version of pdftotext
 
 <<<<<<< HEAD
 ### TO DO on format2 branch
