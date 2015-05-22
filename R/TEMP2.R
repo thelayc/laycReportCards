@@ -23,6 +23,27 @@ get_gpa(student_rcard)
 student_rcard <- lst[[1]]
 get_cumgpa(student_rcard)
 
+# test get_absence
+student_rcard <- lst[[1]]
+get_absence(student_rcard)
+
+# test get_grade
+student_rcard <- lst[[1]]
+get_grade(student_rcard)
+
+# test get_date
+student_rcard <- lst[[1]]
+get_date(student_rcard)
+
+# test get_date
+student_rcard <- lst[[1]]
+get_cshours(student_rcard)
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,28 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{Introduction to laycReportCards}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(laycReportCards)
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  tidy = FALSE)
+```
+
+# Introduction to laycReportCards
+
+This package was designed as an internal package for LAYC (www.layc-dc.org). Its main goal is to facilitate data collection of students academic information. This package scrapes DC report cards and returns students academic information in table format (R data.frame). The main function is get_rcards(). This function takes a report card in pdf file format as input, and returns a table containing the pdf information. The function requires the pdf file to be in a specific format: Please see the "report_card.pdf" file in the package "data" folder to check accepted format.
+
+## Example
+
+* Read a PDF report card & Save the output as school_data
+* Print the first rows of school_data
+
+```{r}
+library(laycReportCards)
+school_data <- get_rcards('../data/report_card.pdf')
+head(school_data[, 2:11])
+```
+

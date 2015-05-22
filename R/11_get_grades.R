@@ -12,9 +12,11 @@
 
 get_grades <- function(student_rcard){
   
-  #1) Identify grades alignment on the page
+  #1 - Identify grades alignment on the page
   # Detect line that starts with "Course"
   course_line <- stringr::str_detect(student_rcard, '^Course')
+  # CHECK that pattern has been matched
+  assertthat::assert_that(sum(course_line) > 0)
   # Extract lines starting with "Course"
   course <- student_rcard[course_line]
   # Remove potential duplicates
@@ -22,12 +24,12 @@ get_grades <- function(student_rcard){
   # Locate the starting position of "Sec" in the string
   sec_position <- stringr::str_locate(course, 'Sec')[1]
   
-  #2) Detect lines with grades information
+  #2 - Detect lines with grades information
   grade_lines <- stringr::str_detect(substr(student_rcard, sec_position, sec_position + 2), '^[0-9]{2}')
   # Extract grade lines
   grade_lines <- student_rcard[grade_lines]
   
-  #3) Identify position of each grade on the line
+  #3 - Identify position of each grade on the line
    # Use "Term 1", "Term 2", ..., "Exam", and "Final" as position markers
   # detect where grades information begins
   term_line <- stringr::str_detect(student_rcard, "Term 1")
