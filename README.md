@@ -6,6 +6,9 @@
   - Need to figure out how to merge individual dataframe into one big dataframe
   - And then how to add that dataframe to the main dataframe returned by get_rcards()
 * read_pdf: check the version of pdftotext
+* get_name: create separate functions to extract name depending on format
+* get_name: replace if/else by function? See shiny tutorial
+* get_gpa: simplify quarterly gpa extraction -> Many repetition
 
 <<<<<<< HEAD
 ### TO DO on format2 branch

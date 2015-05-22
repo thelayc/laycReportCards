@@ -14,5 +14,19 @@ lst <- split_students(txt, format_type)
 # Test get_name
 student_rcard <- lst[[1]]
 get_name(student_rcard, format_type = format_type)
-debug(get_name)
-undebug(get_name)
+
+# test get_gpa
+student_rcard <- lst[[1]]
+get_gpa(student_rcard)
+
+# test get_cumgpa
+student_rcard <- lst[[1]]
+get_cumgpa(student_rcard)
+
+
+
+
+
+########################
+strg <- 'weIKK'
+!grepl(pattern = '[^[:alpha:]]', x = strg)
