@@ -10,29 +10,33 @@
 #' get_absence(students_list[[1]])
 
 get_absence <- function(student_rcard){
-  ## Load libraries
-  library(stringr)
   
-  ## Grab student's gpas
+  # 1 - Extract lines containing absence information
   # detect cumulative gpa element
-  abs_line <- str_detect(student_rcard, "Homeroom Absences")
+  abs_line <- stringr::str_detect(student_rcard, "Homeroom Absences")
+  # CHECK that pattern has been matched
+  assertthat::assert_that(sum(abs_line) > 0)
   # Extract element containing cumulative gpa
   student_rcard <- student_rcard[abs_line]
   # Remove potential duplicates
   student_rcard <- student_rcard[1] 
   # Remove blank spaces
-  student_rcard <- str_replace_all(student_rcard, " ", "")
+  student_rcard <- stringr::str_replace_all(student_rcard, " ", "")
   
-  ## Extract absence information
+  # 2 - Extract absence information
+  # CHECK: If there is a match for "Excused:"
+  assertthat::assert_that(sum(grepl(pattern = 'Excused:', x = student_rcard)) > 0)
   # matches number after "Excused:"
-  excused <- str_extract(student_rcard, perl("Excused:[0-9]")) 
+  excused <- stringr::str_extract(student_rcard, stringr::regex("Excused:[0-9]")) 
   # Remove "Excused:"
-  excused <- str_replace(excused, "Excused:", "") 
+  excused <- stringr::str_replace(excused, "Excused:", "") 
   
-  # matches number after "Excused:"
-  unexcused <- str_extract(student_rcard, perl("Unexcused:[0-9]+")) 
+  # CHECK: If there is a match for "Unexcused:"
+  assertthat::assert_that(sum(grepl(pattern = 'Unexcused:', x = student_rcard)) > 0)
+  # matches number after "Unexcused:"
+  unexcused <- stringr::str_extract(student_rcard, stringr::regex("Unexcused:[0-9]+")) 
   # Remove "Excused:"
-  unexcused <- str_replace(excused, "Unexcused:", "") 
+  unexcused <- stringr::str_replace(excused, "Unexcused:", "") 
   
   ## Return student's cumulative gpa
   return(list(c(abs_excused = excused, abs_unexcused = unexcused)))
