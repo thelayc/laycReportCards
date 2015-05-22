@@ -12,9 +12,11 @@
 
 get_grade <- function(student_rcard){
   
-  #1) Identify line(s) with student's grade level
+  #1 - Identify line(s) with student's grade level
   # detect grade level element
   grade_line <- stringr::str_detect(student_rcard, "Grade:")
+  # CHECK that pattern has been matched
+  assertthat::assert_that(sum(grade_line) > 0)
   # Extract line containing grade level
   student_rcard <- student_rcard[grade_line]
   # Remove potential duplicates
@@ -22,9 +24,9 @@ get_grade <- function(student_rcard){
   # Remove blank spaces
   student_rcard <- stringr::str_replace_all(student_rcard, " ", "")
   
-  #2) Extract grade level
+  #2 - Extract grade level
   # Detect grade level information in the line
-  grade <- stringr::str_extract(student_rcard, stringr::perl("Grade:[0-9]+")) 
+  grade <- stringr::str_extract(student_rcard, stringr::regex("Grade:[0-9]+")) 
   # Remove extra information
   grade <- stringr::str_replace(grade, "Grade:", "") 
   
