@@ -10,24 +10,24 @@
 #' get_date(students_list[[1]])
 
 get_date <- function(student_rcard){
-  ## Load libraries
-  library(stringr)
   
-  ## Grab student's gpas
-  # detect cumulative gpa element
-  date_line <- str_detect(student_rcard, "For Term Ending on:")
+  # 1 - Extract lines containing date information
+  # detect date element
+  date_line <- stringr::str_detect(student_rcard, "For Term Ending on:")
+  # CHECK that pattern has been matched
+  assertthat::assert_that(sum(date_line) > 0)
   # Extract element containing cumulative gpa
   student_rcard <- student_rcard[date_line]
   # Remove potential duplicates
   student_rcard <- student_rcard[1] 
   # Remove blank spaces
-  student_rcard <- str_replace_all(student_rcard, " ", "")
+  student_rcard <- stringr::str_replace_all(student_rcard, " ", "")
   
-  ## Extract cumulative gpa
-  # matches number with format 0.00 after "Cumulative="
-  date <- str_extract(student_rcard, perl("ForTermEndingon:.+")) 
+  # 2 - Extract date
+  # matches everything after "ForTermEndingon:"
+  date <- stringr::str_extract(student_rcard, stringr::regex("ForTermEndingon:.+")) 
   # Remove "Cumulative="
-  date <- str_replace(date, "ForTermEndingon:", "") 
+  date <- stringr::str_replace(date, "ForTermEndingon:", "") 
   
   ## Return student's cumulative gpa
   return(list(c(date = date)))
