@@ -10,22 +10,22 @@
 #' get_cshours(students_list[[1]])
 
 get_cshours <- function(student_rcard){
-  ## Load libraries
-  library(stringr)
   
-  ## Grab student's gpas
+  # 1 - Extract lines containing community service information
   # detect cumulative gpa element
-  cshours_line <- str_detect(student_rcard, "Community Service Hours:")
+  cshours_line <- stringr::str_detect(student_rcard, "Community Service Hours:")
+  # CHECK that pattern has been matched
+  assertthat::assert_that(sum(cshours_line) > 0)
   # Extract element containing cumulative gpa
   student_rcard <- student_rcard[cshours_line]
   # Remove potential duplicates
   student_rcard <- student_rcard[1] 
   # Remove blank spaces
-  student_rcard <- str_replace_all(student_rcard, " ", "")
+  student_rcard <- stringr::str_replace_all(student_rcard, " ", "")
   
-  ## Extract cumulative gpa
-  # matches number with format 0.00 after "Cumulative="
-  cshours <- str_extract(student_rcard, perl("CommunityServiceHours:[0-9]+")) 
+  # 2 - Extract community service hours
+  # matches numbers after "CommunityServiceHours:"
+  cshours <- stringr::str_extract(student_rcard, stringr::regex("CommunityServiceHours:[0-9]+")) 
   # Remove "Cumulative="
   cshours <- str_replace(cshours, "CommunityServiceHours:", "") 
   
