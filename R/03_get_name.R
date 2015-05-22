@@ -58,6 +58,10 @@ get_name <- function(student_rcard, format_type){
     
   }
   
+  # CHECK: First and Last name should contain only alphabetic characters
+  assertthat::assert_that(grepl(pattern = '[^[:alpha:]]', x = first_name) == FALSE)
+  assertthat::assert_that(grepl(pattern = '[^[:alpha:]]', x = last_name) == FALSE)
+  
   # 3 - Return student's name
   return(list(c(fname = first_name, lname = last_name)))
 }
