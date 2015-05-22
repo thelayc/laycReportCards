@@ -10,24 +10,24 @@
 #' get_id(students_list[[1]])
 
 get_id <- function(student_rcard){
-  ## Load libraries
-  library(stringr)
   
-  ## Grab student's gpas
+  # 1 - Extract lines containing student's ID information
   # detect cumulative gpa element
-  id_line <- str_detect(student_rcard, "Student ID:")
+  id_line <- stringr::str_detect(student_rcard, "Student ID:")
+  # CHECK: that pattern has been matched
+  assertthat::assert_that(sum(id_line) > 0)
   # Extract element containing cumulative gpa
   student_rcard <- student_rcard[id_line]
   # Remove potential duplicates
   student_rcard <- student_rcard[1] 
   # Remove blank spaces
-  student_rcard <- str_replace_all(student_rcard, " ", "")
+  student_rcard <- stringr::str_replace_all(student_rcard, " ", "")
   
-  ## Extract cumulative gpa
-  # matches number with format 0.00 after "Cumulative="
-  id <- str_extract(student_rcard, perl("StudentID:[0-9]+")) 
+  # 2 - Extract ID
+  # matches numbers after "StudentID"
+  id <- stringr::str_extract(student_rcard, stringr::regex("StudentID:[0-9]+")) 
   # Remove "Cumulative="
-  id <- str_replace(id, "StudentID:", "") 
+  id <- stringr::str_replace(id, "StudentID:", "") 
   
   ## Return student's cumulative gpa
   return(list(c(id = id)))
