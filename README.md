@@ -1,6 +1,6 @@
 ### TO DO on master branch
 * Get consistent with function calls between base & 
-* 11_get_grades(): Improve code -> many repetitions
+* 11_get_grades(): Improve code -> many repetitions + no checks
 * Figure out how to insert grades in the final dataset.
   - Now return a 1xn(i) dataframe for student (i).
   - Problem is: different students have different columns

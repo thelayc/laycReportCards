@@ -35,9 +35,15 @@ get_grade(student_rcard)
 student_rcard <- lst[[1]]
 get_date(student_rcard)
 
-# test get_date
+# test get_cshours
 student_rcard <- lst[[1]]
 get_cshours(student_rcard)
+
+# test get_grades
+student_rcard <- lst[[1]]
+get_grades(student_rcard)
+
+
 
 
 
