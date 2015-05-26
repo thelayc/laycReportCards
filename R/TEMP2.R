@@ -43,7 +43,11 @@ get_cshours(student_rcard)
 student_rcard <- lst[[1]]
 get_grades(student_rcard)
 
+# test get_rcards
+file <- "./data/students_progress.pdf"
+format_type <- 'students_progress'
 
+df <- get_rcards(file, format_type)
 
 
 
