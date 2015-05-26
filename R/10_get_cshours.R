@@ -27,7 +27,7 @@ get_cshours <- function(student_rcard){
   # matches numbers after "CommunityServiceHours:"
   cshours <- stringr::str_extract(student_rcard, stringr::regex("CommunityServiceHours:[0-9]+")) 
   # Remove "Cumulative="
-  cshours <- str_replace(cshours, "CommunityServiceHours:", "") 
+  cshours <- stringr::str_replace(cshours, "CommunityServiceHours:", "") 
   
   ## Return student's cumulative gpa
   return(list(c(cshours = cshours)))
