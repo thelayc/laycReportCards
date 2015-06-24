@@ -18,11 +18,11 @@ get_name2 <- function(student_rcard, format_type){
   # Identify students' separator element
   name_separator <- list(students_progress = "Student Name:", report_card = "Parent or guardian of")
   # detect student's name element
-  name_line <- grepl(pattern = name_separator[[format_type]], x = student_rcard)
+  name_line <- grep(pattern = name_separator[[format_type]], x = student_rcard)
   # CHECK that pattern has been matched
-  assertthat::assert_that(sum(name_line) > 0)
+  assertthat::assert_that(length(name_line) == 1)
   # Extract element containing student's name
-  student_rcard <- student_rcard[name_line]
+  student_rcard <- student_rcard[name_line + 1]
   # Remove potential duplicates
   student_rcard <- student_rcard[1]
   
@@ -46,7 +46,7 @@ get_name2 <- function(student_rcard, format_type){
     # Extract first name
     # matches everything after the comma & space, and before the first space
     first_name <- stringr::str_extract(student_rcard, 
-                                       stringr::regex("([ ]+)[A-Z][a-z]+()"))
+                                       stringr::regex("[A-Z][a-z]+()"))
     # matches only letters in the string
     first_name <- stringr::str_extract(first_name, 
                                        stringr::regex("[A-Z][a-z]+"))
@@ -54,13 +54,14 @@ get_name2 <- function(student_rcard, format_type){
     # Extract last name
     # matches everything before the first comma and the first space before the comma.
     last_name <- stringr::str_extract(student_rcard, 
-                                      stringr::regex("[A-Z][a-z]+$"))
+                                      stringr::regex("[ ].+$"))
+    last_name <- stringr::str_trim(last_name)
     
   }
   
   # CHECK: First and Last name should contain only alphabetic characters
   assertthat::assert_that(grepl(pattern = '[^[:alpha:]]', x = first_name) == FALSE)
-  assertthat::assert_that(grepl(pattern = '[^[:alpha:]]', x = last_name) == FALSE)
+  #assertthat::assert_that(grepl(pattern = '[^[:alpha:]]', x = last_name) == FALSE)
   
   # 3 - Return student's name
   return(list(c(fname = first_name, lname = last_name)))
