@@ -22,7 +22,7 @@ This package was designed as an internal package for LAYC (www.layc-dc.org). Its
 
 ```{r}
 library(laycReportCards)
-school_data <- get_rcards('../data/report_card.pdf')
+school_data <- get_rcards('../data/students_progress.pdf')
 head(school_data[, 2:11])
 ```
 
