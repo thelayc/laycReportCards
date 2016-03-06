@@ -14,7 +14,7 @@ get_grades <- function(student_rcard){
   
   #1 - Identify grades alignment on the page
   # Detect line that starts with "Course"
-  course_line <- stringr::str_detect(student_rcard, '^Course')
+  course_line <- stringr::str_detect(student_rcard, stringr::regex('^Course'))
   # CHECK that pattern has been matched
   assertthat::assert_that(sum(course_line) > 0)
   # Extract lines starting with "Course"
