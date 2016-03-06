@@ -1,3 +1,8 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
 <!--
 %\VignetteEngine{knitr}
 %\VignetteIndexEntry{Introduction to laycReportCards}
@@ -20,18 +25,23 @@ The function requires the pdf file to be in a specific format: Please see the "s
 
 ## Example
 
-Our goal is to extract students' academic information contained in the "students_progress.pdf" file. Here is a glimpse of the pdf file:
-![students_progress.pdf]('../data-raw/students_progress.pdf')
+Our goal is to extract students' academic information contained in the "students_progress.pdf" file. Here is a glimpse of the pdf file:    
 
-1. Parse the PDF file & Save the output in a data.frame called "school_data""
+![](../data-raw/students_progress.png)
+
+### Parse the PDF file & Save the output in a data.frame called "school_data""
 
 ```{r}
 library(laycReportCards)
 school_data <- get_rcards('../data-raw/students_progress.pdf')
 ```
 
-1. Print the first rows of school_data
-```{r}
-head(school_data[, 2:11])
+### Print the first rows and columns of school_data
+```{r, eval=FALSE}
+head(school_data[ , 2:11])
+```
+
+```{r, echo=FALSE}
+knitr::kable(head(school_data[ , 2:11]))
 ```
 
