@@ -14,7 +14,7 @@ The function requires the pdf file to be in a specific format: Please see the "s
 
 Our goal is to extract students' academic information contained in the "students_progress.pdf" file. Here is a glimpse of the pdf file:    
 
-![](../data-raw/students_progress.png)
+![](./data-raw/students_progress.png)
 
 ### Parse the PDF file & Save the output in a data.frame called "school_data""
 
@@ -31,10 +31,11 @@ head(school_data[ , 2:11])
 ```
 
 
-fname    lname   grade   gpa1   gpa2   gpa3   gpa4   cumgpa   abs_excused   abs_unexcused 
--------  ------  ------  -----  -----  -----  -----  -------  ------------  --------------
-John     Fake    12      3.18   2.95   NA     NA     3.38     4             4             
-Andrea   Fake    10      2.10   1.47   NA     NA     1.18     4             4             
-Sarah    Fake    10      3.73   3.43   NA     NA     3.16     1             1             
-Justin   Fake    10      1.74   2.00   NA     NA     1.57     2             2             
+```
+#>    fname lname grade gpa1 gpa2 gpa3 gpa4 cumgpa abs_excused abs_unexcused
+#> 1   John  Fake    12 3.18 2.95 <NA> <NA>   3.38           4             4
+#> 2 Andrea  Fake    10 2.10 1.47 <NA> <NA>   1.18           4             4
+#> 3  Sarah  Fake    10 3.73 3.43 <NA> <NA>   3.16           1             1
+#> 4 Justin  Fake    10 1.74 2.00 <NA> <NA>   1.57           2             2
+```
 
