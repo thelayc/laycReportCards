@@ -37,11 +37,8 @@ school_data <- get_rcards('../data-raw/students_progress.pdf')
 ```
 
 ### Print the first rows and columns of school_data
-```{r, eval=FALSE}
+```{r}
 head(school_data[ , 2:11])
 ```
 
-```{r, echo=FALSE}
-knitr::kable(head(school_data[ , 2:11]))
-```
 
