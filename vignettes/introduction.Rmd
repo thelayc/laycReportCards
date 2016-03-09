@@ -1,12 +1,13 @@
 ---
-output: 
-  html_document: 
-    keep_md: yes
+title: "Introduction to laycReportCards"
+author: "Tony Fujs"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to laycReportCards}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{Introduction to laycReportCards}
--->
 
 ```{r, echo = FALSE, message = FALSE}
 library(laycReportCards)
